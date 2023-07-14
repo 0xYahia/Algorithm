@@ -31,3 +31,39 @@
 // 5-  عمليه تجميع  xi - m تربيع
 // 6-  عمليه قسمه البسط علي المقام
 // 7-  عمليه استخراج الجذر التربيعي للناتج
+
+//! Code
+
+let sd: number,
+  ave: number = 0,
+  a: number = 0,
+  b: number,
+  i: number,
+  n: number = 0;
+let x: number[] = [];
+
+n = Number(prompt("n=?"));
+
+for (let i = 0; i < n; i++) {
+  x[i] = Number(prompt("x[" + i + "]"));
+  ave += x[i];
+}
+
+ave = ave / n;
+
+console.log(ave);
+
+for (let i = 0; i < n; i++) {
+  a += Math.pow(x[i] - ave, 2);
+}
+
+b = a / n;
+
+sd = Math.sqrt(b);
+
+console.log(sd);
+
+//!------------------------------------------------------------------------------------------------------------------------------------------------//
+//! Assignment
+// مطلوب كتابه  algorithm ورسم  flowchart وكود بأي لغه
+// لحساب معامل الارتباط (correlation)
