@@ -15,7 +15,7 @@
 
 //! Flowchart
 
-//! Code
+//! Implementation
 function circleArea(r: number): number {
   let area: number;
   area = Math.PI * (r * r);
@@ -42,7 +42,7 @@ console.log(circleArea(20)); // 1256.6370614359173
 
 //! Flowchart
 
-//! Code
+//! Implementation
 function parallelogramArea(b: number, h: number): number {
   let area: number;
   area = b * h;
@@ -63,7 +63,7 @@ console.log(parallelogramArea(20, 5)); // 100
 
 //! Flowchart
 
-//! Code
+//! Implementation
 function trapezoidArea(a: number, b: number, h: number): number {
   let area: number;
   area = 0.5 * (a + b) * h;

@@ -32,8 +32,7 @@
 // 6-  عمليه قسمه البسط علي المقام
 // 7-  عمليه استخراج الجذر التربيعي للناتج
 
-//! Code
-
+//! Implementation
 let sd: number,
   ave: number = 0,
   a: number = 0,
