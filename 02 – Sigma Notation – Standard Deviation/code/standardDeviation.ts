@@ -8,6 +8,7 @@
 
 // sigma small letter σ expression to calculate standard deviation - الانحراف المعياري
 
+//! القانون
 // σ = √(∑(xi - m)^2 / N)
 
 // N = عدد العينه او طول العينه الاحصائيه
@@ -33,7 +34,7 @@
 // 7-  عمليه استخراج الجذر التربيعي للناتج
 
 //! Implementation
-let sd: number,
+let sd: number = 0,
   ave: number = 0,
   a: number = 0,
   b: number,
@@ -66,3 +67,12 @@ console.log(sd);
 //! Assignment
 // مطلوب كتابه  algorithm ورسم  flowchart وكود بأي لغه
 // لحساب معامل الارتباط (correlation)
+
+//! القانون
+// r = ∑(i = 1 to N) (xi - m)(yi - n) / √(∑(i = 1 to N) (xi - m)^2 * ∑(i = 1 to N) (yi - n)^2)
+
+// n(∑xy)−(∑x)(∑y) / √[n∑x^2 −(∑x)^2][n∑y^2−(∑y)^2]
+
+// n = عدد العينه او طول العينه الاحصائيه
+// xi (x of i) => mean array value
+// m => mean value of array or average value of array (المتوسط الحسابى)
