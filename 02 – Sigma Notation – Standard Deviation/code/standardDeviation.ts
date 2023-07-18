@@ -34,13 +34,13 @@
 // 7-  عمليه استخراج الجذر التربيعي للناتج
 
 //! Implementation
-let sd: number = 0,
-  ave: number = 0,
-  a: number = 0,
-  b: number,
-  i: number,
-  n: number = 0;
-let x: number[] = [];
+// let sd: number = 0,
+//   ave: number = 0,
+//   a: number = 0,
+//   b: number,
+// i: number,
+//   n: number = 0;
+// let x: number[] = [];
 
 n = Number(prompt("n=?"));
 
