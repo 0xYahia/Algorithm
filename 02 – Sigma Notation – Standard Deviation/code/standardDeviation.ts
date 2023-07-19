@@ -24,7 +24,7 @@
 // b = a / N
 // σ = √b
 
-//! sudo code
+//! Pseudocode
 // 1- حجز مكان في الذاكرة ل x array if numbers و average value و sum  لتتجميع و N
 // 2-  طلب ادخال قيمة N
 // 3-  طلب ادخال عناصر  x  عدد N من المرات
