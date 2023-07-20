@@ -67,7 +67,7 @@ selectionSort([4, 3, 5, 2, 6, 1]);
 
 // ميزه ال selection sort انه بيعمل اقل عدد من السوابات
 // وعيبها اني مش بقدر اكتشف ان الاراي اللي جايالي مترتبه ولا لأ
-//!---------------------------------------------0----------------------------------------------------------------------------------------------------------------------------------------------//
+//!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 //! But we will talk the most popular sorting algorithms:
 //! 3- Insertion Sort
 //! Steps
@@ -137,3 +137,57 @@ function insertionSort2(x: number[]) {
 }
 
 insertionSort2([9, 5, 1, 4, 3]);
+//!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+//! Recursion
+// Recursion is a technique for iterating over an operation by having a function call itself repeatedly until it arrives at a result.
+// Recursion is a method of solving problems that involves breaking a problem down into smaller and smaller subproblem until you get
+// to a small enough problem that it can be solved trivially.
+
+// Recursion still work until arrive to base case (base case is the smallest problem that can be solved trivially)
+
+//! Example
+// 1- Factorial
+class Program {
+  public static factorial(num: number) {
+    if (num == 1) {
+      return 1;
+    }
+    // num - 1 => base case
+    return num * Program.factorial(num - 1);
+    // 5 * 4 * 3 * 2 * 1
+  }
+
+  public static main(args: string[]) {
+    console.log(Program.factorial(5));
+  }
+}
+
+//! NOTE => الريترن مش بتتنفذ غير لما الجزء اللي علي يمينها يخلص عشان كدا كل ما بتنادي علي نفسها بترجع تعمل كول لنفسها مش بتعمل ريترن
+// وبعد كدا عمليه الاكسيوت بتتم في الستاك بالعكس وبيتم التعويض بالريترن بتاع الفانكشن وهكذا
+// في الفاكتوريال عندي عدد وعايز اضربه في كل الارقام اللي قبله لحد ما اوصل للرقم 1
+//! NOTE => Recursion will be work toward base case (Must)
+
+// Console.WriteLine(factorial(4));
+// factorial(4) => 4 * factorial(4 - 1)
+// factorial(4 - 1) => 3 * factorial(3 - 1)
+// factorial(3 - 1) => 2 * factorial(2 - 1)
+// factorial(2 - 1) => 1
+
+// عند ال execute
+// Console.WriteLine(factorial(24));
+// factorial(4) => 4 * 4
+// factorial(4 - 1) => 3 * 2
+// factorial(3 - 1) => 2 * 1
+// factorial(2 - 1) => 1
+
+// في الفاكتوريال لو عملت الفاكتوريال بالطريقه العاديه هيكون الكود كدا
+function factorial(num: number) {
+  let fact = 1;
+  for (let i = 1; i <= num; i++) {
+    fact *= i;
+  }
+  return fact;
+}
+console.log(factorial(5));
+
+// 2- Fibonacci
