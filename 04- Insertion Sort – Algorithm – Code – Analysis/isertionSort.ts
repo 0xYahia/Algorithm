@@ -191,3 +191,35 @@ function factorial(num: number) {
 console.log(factorial(5));
 
 // 2- Fibonacci
+//!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+//! Merge Sort
+// Merge Sort is a Divide and Conquer algorithm. It divides input array in two halves, calls itself for the two halves and then merges the two sorted halves.
+// عباره عن اني بقسم الاراي اللي جايالي الي نصين وبعد كدا بقسم كل نص الي نصين وهكذا لحد ما اوصل لنصين واحد في كل نص وبعد كدا ببدأ اعمل مرحله الدمج
+// وانا بدمج بقارن العنصر الاول في النص الاول بالعنصر الاول في النص التاني واللي اصغر بحطه في الاراي النهائي وهكذا لحد ما اخلص الارايين
+
+//! مثال توضيحي
+// [6, 5, 12, 10, 9, 1]
+// [6, 5, 12] : [10, 9, 1]
+// [6] : [5, 12] : [10] : [9, 1]
+// [6] : [5] : [12] : [10] : [9] : [1]
+// [5, 6] : [10, 12] : [1, 9]
+// [5, 6, 10, 12] : [1, 9]
+// [1, 5, 6, 9, 10, 12]
+
+//! Steps (Plain English)
+// 1- Read the array (x), Start and End index of the portion that we need to sort
+// 2- Don't continue if End equal or greater than Start
+// 3- Calculate the Midpoint = (Start + End) / 2 => floor it
+// 4- Divide the portion of the array into NEW two arrays
+// 5- Call yourself twice, one for the left portion, the other for the right portion
+// 6- Merge the two portions.
+// 7- Print x
+
+//! Pseudocode (Merge Sort)
+// 1- mergeSort(x, start, end)
+// 2- if end <= start then return
+// 3- mid = floor((start + end) / 2)
+// 4- mergeSort(x, start, mid)
+// 5- mergeSort(x, mid + 1, end)
+// 6- merge(x, start, mid, end)
+// 7- print x
