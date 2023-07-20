@@ -206,7 +206,7 @@ console.log(factorial(5));
 // [5, 6, 10, 12] : [1, 9]
 // [1, 5, 6, 9, 10, 12]
 
-//! Steps (Plain English)
+//! Steps (Plain English)(merge sort)
 // 1- Read the array (x), Start and End index of the portion that we need to sort
 // 2- Don't continue if End equal or greater than Start
 // 3- Calculate the Midpoint = (Start + End) / 2 => floor it
@@ -217,9 +217,73 @@ console.log(factorial(5));
 
 //! Pseudocode (Merge Sort)
 // 1- mergeSort(x, start, end)
-// 2- if end <= start then return
+// 2- if end >= start then return
 // 3- mid = floor((start + end) / 2)
 // 4- mergeSort(x, start, mid)
 // 5- mergeSort(x, mid + 1, end)
 // 6- merge(x, start, mid, end)
 // 7- print x
+
+//! Steps (Plain English)(merge only)
+// 1- Read the array (x), Start, Midpoint and End index.
+// 2- Create two new arrays, one for the left portion, the other for the right portion. create copy of the left portion and the right portion.
+// 3- Compare all items in the arrays and sort it in the original array.
+// 4- Move remain items in each array to the original array as is
+// 11:00
+
+function mergeSort(array: number[], start: number, end: number) {
+  if (end <= start) return;
+  // console.log(array)
+  let midpoint = (end + start) / 2;
+  mergeSort(array, start, midpoint);
+  mergeSort(array, midpoint + 1, end);
+  merge(array, start, midpoint, end);
+}
+
+function merge(array: number[], start: number, midpoint: number, end: number) {
+  var i, j, k;
+  let left_length = midpoint - start + 1;
+  let right_length = end - midpoint;
+  // console.log(array)
+
+  var left_array: number[] = [];
+  var right_array: number[] = [];
+
+  for (i = 0; i < left_length; i++) {
+    left_array[i] = array[start + i];
+  }
+
+  for (j = 0; j < right_length; j++) {
+    right_array[j] = array[midpoint + 1 + j];
+  }
+
+  i = j = 0;
+  k = start;
+  while (i < left_length && j < right_length) {
+    if (left_array[i] <= right_array[j]) {
+      array[k] = left_array[i];
+      i++;
+    } else {
+      array[k] = right_array[j];
+      j++;
+    }
+    k++;
+  }
+
+  while (i < left_length) {
+    array[k] = left_array[i];
+    i++;
+    k++;
+  }
+
+  while (i < right_length) {
+    array[k] = right_array[i];
+    j++;
+    k++;
+  }
+}
+
+let arr = [8, 65, 9, 7, 3, 5, 54];
+console.log(arr);
+mergeSort(arr, 0, arr.length - 1);
+console.log(arr);
