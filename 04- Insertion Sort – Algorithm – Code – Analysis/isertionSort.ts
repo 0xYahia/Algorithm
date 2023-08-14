@@ -447,9 +447,8 @@ console.log(factorial(5));
 // 11:00
 
 function mergeSort(array: number[], start: number, end: number) {
-  if (end <= start) return array;
-  // console.log(array)
-  let midpoint = (end + start) / 2;
+  if (end <= start) return;
+  let midpoint = Math.floor((end + start) / 2);
   mergeSort(array, start, midpoint);
   mergeSort(array, midpoint + 1, end);
   merge(array, start, midpoint, end);
@@ -496,9 +495,13 @@ function merge(array: number[], start: number, midpoint: number, end: number) {
     j++;
     k++;
   }
+    console.log('after merge left',left_array)
+    console.log('after merge right',right_array)
+
+
 }
 
-let arr = [8, 65, 9, 7, 3, 5, 54];
+let arr = [8, 65, 9, 7, 3, 54];
 console.log(arr);
 mergeSort(arr, 0, arr.length - 1);
 console.log(arr);
