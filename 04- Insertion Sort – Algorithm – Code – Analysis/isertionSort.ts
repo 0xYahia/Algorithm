@@ -444,7 +444,6 @@ console.log(factorial(5));
 // 2- Create two new arrays, one for the left portion, the other for the right portion. create copy of the left portion and the right portion.
 // 3- Compare all items in the arrays and sort it in the original array.
 // 4- Move remain items in each array to the original array as is
-// 11:00
 
 function mergeSort(array: number[], start: number, end: number) {
   if (end <= start) return;
