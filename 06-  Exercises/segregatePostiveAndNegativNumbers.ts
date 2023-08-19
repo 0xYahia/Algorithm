@@ -102,7 +102,66 @@ function segregate(arr: number[], start:number, end: number){
   }
 
 
-  let arr = [6, -5, 12, 10, -9, -1]
-  console.log(arr)
-  segregate(arr, 0, arr.length - 1)
-  console.log(arr)
+let arr = [6, -5, 12, 10, -9, -1]
+console.log(arr)
+segregate(arr, 0, arr.length - 1)
+console.log(arr)
+
+//! Another solution
+// function segregate(arr: number[], start:number, end: number){
+//   let mid = Math.floor((start + end) / 2);
+//   let left = arr.slice(start, mid);
+//   let right = arr.slice(mid , end)
+//   console.log(left)
+//   console.log(right)
+
+//   merge(arr, start, mid, end, left, right)
+// }
+
+// function merge(arr: number[], start: number, mid: number, end: number, left:number[], right: number[]){
+//   let i,j,k;
+
+//   let left_array: number[] = [];
+//   let right_array: number[] = [];
+
+//   for(i =0; i < left.length; i++){
+//     left_array[i] = arr[start + i];
+//   }
+
+//   for(j=0; j < right.length; j++){
+//     right_array[j] = arr[mid + j]
+//   }
+
+//   i = j = 0;
+//   k = start;
+
+//   while(i < left.length && left_array[i] <= 0){
+//     arr[k] = left_array[i];
+//     i++;
+//     k++;
+//   }
+
+//   while(j < right.length && right_array[j] <=0){
+//     arr[k] = right_array[j]
+//     j++;
+//     k++
+//   }
+
+//   while(i < left.length){
+//     arr[k] = left_array[i];
+//     i++;
+//     k++;
+//   }
+
+//   while(j < right.length){
+//     arr[k] = right_array[j];
+//     j++;
+//     k++;
+//   }
+
+//   return arr
+// }
+
+
+// let arr = [6, -5, 12, 10, -9, -1]
+// console.log(segregate(arr, 0, arr.length))
