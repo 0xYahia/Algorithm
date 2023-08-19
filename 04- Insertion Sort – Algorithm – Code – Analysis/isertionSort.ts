@@ -505,3 +505,33 @@ let arr = [8, 65, 9, 7, 3, 54];
 console.log(arr);
 mergeSort(arr, 0, arr.length - 1);
 console.log(arr);
+//!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+//! 12 – Divide & Conquer – Merge Sort – Analysis
+//! Divide and Conquer => Divide and Conquer is an algorithm design paradigm based on multi-branched recursion.
+// Recursively
+// divide
+// conquer
+// combine
+
+//! Analysis Methods => we have two methods to analyze the algorithms
+// 1- recursive tree
+// 2- master method (theorem)
+
+//! To analyze the algorithms we need to know the complexity of the algorithm
+// k = last level of the tree
+// k+1 = count of levels of the tree
+// n = count of nodes in each level
+// n = 4, k = 2
+// n = 8, k = 3
+// n = 16, k = 4
+
+// k = log2(n)
+// n = 2^k
+
+// f(n) = n * log2 n + 1
+// f(n) = O(n * log n) as n -> ∞
+//! O(n * log n)
+
+//! Master Method (Theorem) => we use it to analyze the algorithms we don't need to know it know
+//!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+//! 13 – Binary Search – Algorithm – Code
