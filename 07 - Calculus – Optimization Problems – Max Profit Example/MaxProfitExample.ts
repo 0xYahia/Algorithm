@@ -1,13 +1,13 @@
 //! 16 – Calculus – Optimization Problems – Max Profit Example
 //! Optimization Problems
-// Optmiization problems is => the problem of finding the best solution from all feasible solutions.
+// Optimization problems is => the problem of finding the best solution from all feasible solutions.
 
 // Optimization problem usually about finding Maximum something or Minimum something
 // like Maz profit or Min cost, within specific criteria or constraints.
 
 //! Example:
 // شرطه عايزة تعرف ايه الكميه المناسبه من صنف معين اذا تم بيعها هيحققو اعلي مكسب ممكن وفقا للامكانيات الصناعيه للشركة.
-// عملو دراسه للسوق وطلعوا منها بأنهم لو سعروا الصنف ب 1.5 دولار فالسوق يسحب منهم 5000 وحده من الصنفز
+// عملو دراسه للسوق وطلعوا منها بأنهم لو سعروا الصنف ب 1.5 دولار فالسوق يسحب منهم 5000 وحده من الصنف
 // وعلي كل 10 سنت هيخفضوها هيقدرو يبيعو 1000 وحده اضافيه.
 //وطبعا لو حاولت الشركة تزود السعر فالمبيعات هتقل وبالتالي المكسب هيقل.
 // الشركه عندها تكاليف ثابته للانتاج تقدر ب 2000 دولار
