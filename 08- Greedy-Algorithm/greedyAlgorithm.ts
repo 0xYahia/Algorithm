@@ -66,3 +66,22 @@ selectTasks(start, end)
 
 // - for each char in the text, find the proper index by getting the ASCII decimal code for the char then increase the item value by 1
 // - print the array
+
+
+function freqChar(message: string){
+    let freq:number[] = Array.from({length: 127}, (value, index) => index + 1)
+    for(let i =0; i < message.length; i++){
+        let current_code = message[i].charCodeAt(0)
+        freq[current_code]++
+    }
+
+
+    for(let i=0; i < freq.length; i++){
+        if(freq[i] > 0){
+            let char = String.fromCharCode(i)
+            console.log(char)
+        }
+    }
+}
+
+freqChar('hellow')
