@@ -48,3 +48,21 @@ let end = [11,11,12,14,15,16]
 
 selectTasks(start, end)
 //!------------------------------------------------------------------------------------------------------------------------------------------------
+//! 19 – Sorted Characters Frequencies – Algorithm – Code
+// Input: text [ASCII letters only]
+// Output: the frequency of each unique character
+// Example:
+// Inputs: "internet"
+// Output: {i:1, n:2, t:2, e:2, r:1}
+
+// Example:
+// Inputs: "hello world"
+// Output: {h:1, e:1, l:3, o:2, w:1, r:1, d:1}
+
+//! Solution:
+// if we have to use array only
+// - create array of length = 127 .. so that each index represent one char .. the value of the item in each index is the frequency
+// of the char
+
+// - for each char in the text, find the proper index by getting the ASCII decimal code for the char then increase the item value by 1
+// - print the array
