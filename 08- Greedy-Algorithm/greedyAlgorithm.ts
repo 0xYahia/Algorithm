@@ -67,6 +67,7 @@ selectTasks(start, end)
 // - for each char in the text, find the proper index by getting the ASCII decimal code for the char then increase the item value by 1
 // - print the array
 
+//! Sorted ASCII Characters Frequencies
 
 function asciiMethod(message: string){
   let freqArr = Array.from({length: 127}, (_, index) => 0)
@@ -83,7 +84,84 @@ function asciiMethod(message: string){
   }
 }
 
-let msg = "hello world"
-asciiMethod(msg)
+let msg1 = "hello world"
+asciiMethod(msg1)
 //!------------------------------------------------------------------------------------------------------------------------------------------------
-// Optimal Quantity Sold (Q_optimal) = Total Demand / (1 + (Variable Costs per Unit / Selling Price per Unit))
+//! Sorted Any Characters Frequencies
+
+function anyCodeMethod(message: string){
+  console.log('AnyMethod')
+  let freqArr: {[key: string]: number} = {};
+  for(let i =0; i < message.length; i++){
+      freqArr[message[i]] = (freqArr[message[i]] || 0) + 1
+  }
+
+  let convertObjToArray = Object.entries(freqArr)
+  sort(convertObjToArray,0, convertObjToArray.length-1)
+
+  for(let i =0; i < convertObjToArray.length; i++){
+      console.log(convertObjToArray[i])
+  }
+}
+
+function sort(array:[string, number][], start: number, end:number){
+  if(end <= start) return;
+
+  let mid = Math.floor((start + end) / 2)
+
+  sort(array, start, mid);
+  sort(array, mid + 1, end);
+
+  merge(array, start, mid, end)
+}
+
+function merge(array:[string, number][], start:number, mid: number, end:number){
+    let left_length = mid - start +1;
+    let right_length = end - mid;
+
+    let left_array:[string, number][] = [];
+    let right_array:[string, number][] = [];
+
+    for(let i =0; i < left_length; i++){
+        left_array[i] = array[start + i]
+    }
+
+    for(let j=0; j < right_length; j++){
+        right_array[j] = array[mid + 1 + j]
+    }
+
+    let left_index =0;
+    let right_index =0;
+    let merge_index = start
+
+    while(left_index < left_length && right_index < right_length){
+        if(left_array[left_index][1] <= right_array[right_index][1]){
+            array[merge_index] = left_array[left_index];
+            left_index++
+        } else {
+            array[merge_index] = right_array[right_index]
+            right_index++
+        }
+        merge_index++;
+    }
+
+    while(left_index < left_length){
+        array[merge_index] = left_array[left_index];
+        left_index++;
+        merge_index++;
+    }
+
+    while(right_index < right_length){
+        array[merge_index] = right_array[right_index];
+        right_index++;
+        merge_index++;
+    }
+
+}
+
+
+
+let msg2 = "hello world";
+anyCodeMethod(msg2)
+
+
