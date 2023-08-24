@@ -68,20 +68,22 @@ selectTasks(start, end)
 // - print the array
 
 
-function freqChar(message: string){
-    let freq:number[] = Array.from({length: 127}, (value, index) => index + 1)
-    for(let i =0; i < message.length; i++){
-        let current_code = message[i].charCodeAt(0)
-        freq[current_code]++
-    }
+function asciiMethod(message: string){
+  let freqArr = Array.from({length: 127}, (_, index) => 0)
+  for(let i =0; i < message.length; i++){
+      let current_code = message[i].charCodeAt(0);
+      freqArr[current_code]++;
+  }
 
-
-    for(let i=0; i < freq.length; i++){
-        if(freq[i] > 0){
-            let char = String.fromCharCode(i)
-            console.log(char)
-        }
-    }
+  for(let i =0; i < freqArr.length; i++){
+      if(freqArr[i] > 0){
+          let char = String.fromCharCode(i)
+          console.log(char,freqArr[i])
+      }
+  }
 }
 
-freqChar('hellow')
+let msg = "hello world"
+asciiMethod(msg)
+//!------------------------------------------------------------------------------------------------------------------------------------------------
+// Optimal Quantity Sold (Q_optimal) = Total Demand / (1 + (Variable Costs per Unit / Selling Price per Unit))
