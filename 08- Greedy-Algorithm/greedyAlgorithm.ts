@@ -90,78 +90,83 @@ asciiMethod(msg1)
 //! Sorted Any Characters Frequencies
 
 function anyCodeMethod(message: string){
-  console.log('AnyMethod')
-  let freqArr: {[key: string]: number} = {};
-  for(let i =0; i < message.length; i++){
-      freqArr[message[i]] = (freqArr[message[i]] || 0) + 1
+    console.log('AnyMethod')
+    let freqArr: {[key: string]: number} = {};
+    for(let i =0; i < message.length; i++){
+        freqArr[message[i]] = (freqArr[message[i]] || 0) + 1
+    }
+
+  //   let convertObjToArray = Object.entries(freqArr)
+      let convertObjToArray: any[] = []
+      let index = 0
+      for(let item in freqArr){
+          convertObjToArray[index] = [item, freqArr[item]]
+          index++;
+      }
+        sort(convertObjToArray,0, convertObjToArray.length-1)
+      // convertObjToArray.sort((a, b) => a[1] - b[1])
+
+    for(let i =0; i < convertObjToArray.length; i++){
+        console.log(convertObjToArray[i])
+    }
   }
 
-  let convertObjToArray = Object.entries(freqArr)
-  sort(convertObjToArray,0, convertObjToArray.length-1)
+  function sort(array:[string, number][], start: number, end:number){
+    if(end <= start) return;
 
-  for(let i =0; i < convertObjToArray.length; i++){
-      console.log(convertObjToArray[i])
+    let mid = Math.floor((start + end) / 2)
+
+    sort(array, start, mid);
+    sort(array, mid + 1, end);
+
+    merge(array, start, mid, end)
   }
-}
 
-function sort(array:[string, number][], start: number, end:number){
-  if(end <= start) return;
+  function merge(array:[string, number][], start:number, mid: number, end:number){
+      let left_length = mid - start +1;
+      let right_length = end - mid;
 
-  let mid = Math.floor((start + end) / 2)
+      let left_array:[string, number][] = [];
+      let right_array:[string, number][] = [];
 
-  sort(array, start, mid);
-  sort(array, mid + 1, end);
+      for(let i =0; i < left_length; i++){
+          left_array[i] = array[start + i]
+      }
 
-  merge(array, start, mid, end)
-}
+      for(let j=0; j < right_length; j++){
+          right_array[j] = array[mid + 1 + j]
+      }
 
-function merge(array:[string, number][], start:number, mid: number, end:number){
-    let left_length = mid - start +1;
-    let right_length = end - mid;
+      let left_index =0;
+      let right_index =0;
+      let merge_index = start
 
-    let left_array:[string, number][] = [];
-    let right_array:[string, number][] = [];
+      while(left_index < left_length && right_index < right_length){
+          if(left_array[left_index][1] <= right_array[right_index][1]){
+              array[merge_index] = left_array[left_index];
+              left_index++
+          } else {
+              array[merge_index] = right_array[right_index]
+              right_index++
+          }
+          merge_index++;
+      }
 
-    for(let i =0; i < left_length; i++){
-        left_array[i] = array[start + i]
-    }
+      while(left_index < left_length){
+          array[merge_index] = left_array[left_index];
+          left_index++;
+          merge_index++;
+      }
 
-    for(let j=0; j < right_length; j++){
-        right_array[j] = array[mid + 1 + j]
-    }
+      while(right_index < right_length){
+          array[merge_index] = right_array[right_index];
+          right_index++;
+          merge_index++;
+      }
 
-    let left_index =0;
-    let right_index =0;
-    let merge_index = start
-
-    while(left_index < left_length && right_index < right_length){
-        if(left_array[left_index][1] <= right_array[right_index][1]){
-            array[merge_index] = left_array[left_index];
-            left_index++
-        } else {
-            array[merge_index] = right_array[right_index]
-            right_index++
-        }
-        merge_index++;
-    }
-
-    while(left_index < left_length){
-        array[merge_index] = left_array[left_index];
-        left_index++;
-        merge_index++;
-    }
-
-    while(right_index < right_length){
-        array[merge_index] = right_array[right_index];
-        right_index++;
-        merge_index++;
-    }
-
-}
+  }
 
 
 
-let msg2 = "hello world";
-anyCodeMethod(msg2)
-
-
+  let msg2 = "hello world";
+  anyCodeMethod(msg2)
