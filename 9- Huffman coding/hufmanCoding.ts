@@ -198,3 +198,146 @@
 // Node is an object has data and references to another nodes
 //!----------------------------------------------------------------------------------------------------------------------------
 //! Implementation
+
+
+class PriorityQueue<T> {
+  private heap: { priority: number; value: T }[] = [];
+
+  private getParentIndex(index: number): number {
+    return Math.floor((index - 1) / 2);
+  }
+
+  private getLeftChildIndex(index: number): number {
+    return 2 * index + 1;
+  }
+
+  private getRightChildIndex(index: number): number {
+    return 2 * index + 2;
+  }
+
+  private siftUp(index: number): void {
+    if (index === 0) return;
+
+    const parentIndex = this.getParentIndex(index);
+    if (this.heap[parentIndex].priority > this.heap[index].priority) {
+      [this.heap[parentIndex], this.heap[index]] = [this.heap[index], this.heap[parentIndex]];
+      this.siftUp(parentIndex);
+    }
+  }
+
+  private siftDown(index: number): void {
+    const leftChildIndex = this.getLeftChildIndex(index);
+    const rightChildIndex = this.getRightChildIndex(index);
+    let smallest = index;
+
+    if (leftChildIndex < this.heap.length && this.heap[leftChildIndex].priority < this.heap[smallest].priority) {
+      smallest = leftChildIndex;
+    }
+
+    if (rightChildIndex < this.heap.length && this.heap[rightChildIndex].priority < this.heap[smallest].priority) {
+      smallest = rightChildIndex;
+    }
+
+    if (smallest !== index) {
+      [this.heap[index], this.heap[smallest]] = [this.heap[smallest], this.heap[index]];
+      this.siftDown(smallest);
+    }
+  }
+
+  enqueue(item: T, priority: number): void {
+    this.heap.push({ priority, value: item });
+    this.siftUp(this.heap.length - 1);
+  }
+
+  dequeue(): T | undefined {
+    if (this.heap.length === 0) return undefined;
+
+    const top = this.heap[0];
+    const last = this.heap.pop()!;
+    if (this.heap.length > 0) {
+      this.heap[0] = last;
+      this.siftDown(0);
+    }
+    return top.value;
+  }
+
+  isEmpty(): boolean {
+    return this.heap.length === 0;
+  }
+
+
+  peek(): T | undefined {
+    if (this.heap.length === 0) return undefined;
+    return this.heap[0].value;
+  }
+}
+
+// const pq = new PriorityQueue<number>();
+// pq.enqueue(10, 2);
+// pq.enqueue(20, 1);
+// pq.enqueue(5, 3);
+
+// while (!pq.isEmpty()) {
+//   console.log(pq.dequeue()); // Output: 20, 10, 5
+// }
+
+///////////////////////////////////////////////////////////////////////
+
+class HeapNode {
+  public left: HeapNode | null;
+  public right: HeapNode | null
+  public data: string;
+  public freq: number;
+
+  constructor(data: string, freq: number){
+      this.left = this.right = null
+      this.data = data;
+      this.freq = freq
+  }
+}
+
+class Huffman{
+    public minHeap:PriorityQueue<HeapNode> = new PriorityQueue<HeapNode>();
+    public codes:any = {}
+    public emptyChar = String.fromCharCode(0)
+    constructor(message:string){
+        let freq: {[key:string]: number} = {}
+        for(let i =0; i < message.length; i++){
+            freq[message[i]] = (freq[message[i]] || 0) + 1
+        }
+        for(let k in freq){
+         let newNode: HeapNode = new HeapNode(k, freq[k])
+         this.minHeap.enqueue(newNode, freq[k])
+        }
+
+        let top: HeapNode;
+        let left, right;
+        var newFreq
+        while(!this.minHeap.isEmpty()){
+            left = this.minHeap.dequeue();
+            right = this.minHeap.dequeue()
+            newFreq = left!.freq + right!.freq
+            top = new HeapNode(this.emptyChar, newFreq)
+            this.minHeap.enqueue(top, newFreq)
+        }
+
+        this.generateCodes(this.minHeap.peek(), '')
+    }
+
+    private generateCodes(node: HeapNode | undefined | null, str: string){
+        if(node === null) return;
+        if(node!.data != this.emptyChar){
+            this.codes[node!.data] = str
+        }
+
+        this.generateCodes(node!.left, str + '0');
+        this.generateCodes(node!.right, str + '1');
+    }
+}
+
+let msg = 'internet'
+let huff: Huffman = new Huffman(msg);
+
+for(let k in huff.codes){
+    console.log(k, huff.codes[k])
+}
