@@ -129,4 +129,5 @@ for(let i =0; i < arrayLength; i++){
   items.push(newItem)
 }
 
+
 mergeSort(items);
