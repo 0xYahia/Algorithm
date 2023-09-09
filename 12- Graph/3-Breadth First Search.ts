@@ -49,43 +49,43 @@ while (q.length > 0) {
 //! Implementation of Breadth First Search (BFS) algorithm using OOP
 
 // class Vertex {
-//   public name!:string;
-//   public visited!:boolean
-//   public vertexLinks!:Edge[]
+//   public name!: string;
+//   public visited!: boolean
+//   public vertexLinks!: Edge[]
 // }
 
 // class Edge {
-//   public weight:number;
-//   public source:Vertex;
-//   public target:Vertex;
-//   constructor(source:Vertex, target:Vertex, weight:number = 0){
-//     this.source= source;
+//   public weight: number;
+//   public source: Vertex;
+//   public target: Vertex;
+//   constructor(source: Vertex, target: Vertex, weight: number = 0) {
+//     this.source = source;
 //     this.target = target;
 //     this.weight = weight;
 //   }
 // }
 
 // class Graph {
-//   private last_index:number = 0;
-//   public vertices: Vertex[]=[];
-//   constructor(names:string[]){
+//   private last_index: number = 0;
+//   public vertices: Vertex[] = [];
+//   constructor(names: string[]) {
 //     this.vertices = new Vertex();
-//     for(let name in names){
+//     for (let name in names) {
 //       this.vertices[this.last_index] = new Vertex()
 //       this.vertices[this.last_index].name = name;
 //       this.last_index++;
 //     }
 //   }
 
-//   public AddEdges(vertecIndex:number, targets:number[]){
+//   public AddEdges(vertecIndex: number, targets: number[]) {
 //     this.vertices[vertecIndex].vertexLinks = new Edge();
-//     for(let i=0; i < targets.length; i++){
+//     for (let i = 0; i < targets.length; i++) {
 //       this.vertices[vertecIndex].vertexLinks[i] =
-//        new Edge(this.vertices[vertecIndex], this.vertices[targets[i]])
+//         new Edge(this.vertices[vertecIndex], this.vertices[targets[i]])
 //     }
 //   }
 
-//   public BFS(){
+//   public BFS() {
 //     console.log("BFS From Graph Class")
 //     let v: number = this.vertices.length
 
@@ -106,25 +106,55 @@ while (q.length > 0) {
 //     this.vertices[0].visited = true;
 
 //     let current_vertex: Vertex | undefined;
-//     let destination: Edge[];
+//     let destinations: Edge[];
 
 //     while (q.length > 0) {
 //       current_vertex = q.pop()
-//       destination = graph.get(current_vertex)
-//       for (let i = 0; i < destination.length; i++) {
-//         if (!destination[i].target.visited) {
-//           q.unshift(destination[i].target);
-//           destination[i].target.visited = true
-//           console.log(current_vertex + " - " + destination[i].target.name)
+//       destinations = graph.get(current_vertex)
+//       for (let i = 0; i < destinations.length; i++) {
+//         if (!destinations[i].target.visited) {
+//           q.unshift(destinations[i].target);
+//           destinations[i].target.visited = true
+//           console.log(current_vertex!.name + " - " + destinations[i].target.name)
 //         }
 //       }
 //     }
 //     this.reset()
 //   }
 
-//   public reset():void{
-//     for(let i =0; i < this.vertices.length; i++){
+//   public reset(): void {
+//     for (let i = 0; i < this.vertices.length; i++) {
 //       this.vertices[i].visited = false
 //     }
 //   }
+
+//   public DFS(): void {
+//     console.log('DFS From Graph Class');
+//     this.reset();
+//   }
+
+//   public DFSRecursion(current_vertex: Vertex): void {
+//     current_vertex.visited = true;
+//     let destinations: Edge[] = current_vertex.vertexLinks;
+//     for (let i = 0; i < destinations.length; i++) {
+//       if (!destinations[i].target.visited) {
+//         console.log(current_vertex.name + " - " + destinations[i].target.name)
+//         this.DFSRecursion(destinations[i].target)
+//       }
+//     }
+//   }
 // }
+
+// let g: Graph = new Graph(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']);
+
+// g.AddEdges(0, [1, 2]);
+// g.AddEdges(1, [0, 3, 4]);
+// g.AddEdges(2, [0, 3, 5]);
+// g.AddEdges(3, [1, 2, 4]);
+// g.AddEdges(4, [1, 5]);
+// g.AddEdges(5, [2, 3, 4, 7]);
+// g.AddEdges(6, [7, 8]);
+// g.AddEdges(7, [5, 6, 8]);
+// g.AddEdges(8, [6, 7]);
+
+// g.DFS()
