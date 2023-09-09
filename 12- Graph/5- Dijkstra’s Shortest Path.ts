@@ -1,11 +1,22 @@
-//! 29 – Graph – Depth First Search – Algorithm – Code
-//! Depth First Search (DFS) Algorithm
-// Depth First Search (DFS) is different from Breadth First Search (BFS)
-// Breadth First Search (BFS) walks through the nodes level by level but Depth First Search (DFS) walks through the nodes until the end
-// then it backtracks and walk through the other nodes using recursion
-// in Depth First Search (DFS) we walk in track then we walk back and walk in another track
+//! 30 – Graph – Dijkstra’s Shortest Path – Algorithm – Code
 
-//! Implementation of Breadth First Search (BFS) algorithm using OOP
+// Dijkstra’s Shortest Path Algorithm common use case is to find the shortest path from a source vertex to all other vertices in the graph.
+// like google map, we want to find the shortest path from a source to all other vertices in the graph.
+
+//! Steps to apply Dijkstra’s Shortest Path Algorithm:
+// 1) we choice vertex to start from it, we call it source vertex.
+// 2) make  table from three columns, first column is the vertex, second column is the distance from the source vertex to this vertex,
+// third column is the previous vertex (source vertex). and we fill the table with the source vertex and infinity for the distance
+// but we set the distance of the source vertex to itself to be zero. and we put null for the previous vertex.
+// 3) we choice the vertex with the minimum distance from the source vertex with infinity in the first calculation, and we call it current vertex.
+// 4) we loop on the current vertex neighbors, and we calculate the distance from the source vertex to each neighbor, and we compare it with the distance
+// in the table, if the distance in the table is bigger than the distance we calculated, we update the distance in the table with the new distance
+// and we update the previous vertex with the current vertex.
+// 5) we repeat step 3 and 4 until we loop on all the vertices in the graph.
+// 6) in the last vertex, we loop on the previous vertex make this shortest path. and go back to the source vertex. and so on.
+
+
+//! Implementation
 
 class Vertex {
   public name!: string;
@@ -36,7 +47,8 @@ class Graph {
     }
   }
 
-  public AddEdges(vertexIndex: number, targets: number[]): void {
+  // public AddEdges(vertexIndex:number, targets:number[]):void
+  public AddEdges(vertexIndex: number, targets: number[], weight: number[]): void {
     this.vertices[vertexIndex].vertexLinks = new Array(targets.length)
     for (let i = 0; i < targets.length; i++) {
       this.vertices[vertexIndex].vertexLinks[i] =
@@ -106,15 +118,14 @@ class Graph {
 
 let g: Graph = new Graph(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']);
 
+g.AddEdges(0, [1, 2], [2, 4, 3]);
+g.AddEdges(1, [0, 3, 4], [7, 4, 6]);
+g.AddEdges(2, [0, 3, 5], [3, 2, 4]);
+g.AddEdges(3, [1, 2, 4], [4, 1, 5]);
+g.AddEdges(4, [1, 5], [1, 4]);
+g.AddEdges(5, [2, 3, 4, 7], [6, 3]);
+g.AddEdges(6, [7, 8], [3, 3]);
+g.AddEdges(7, [5, 6, 8], [3]);
+g.AddEdges(8, [6, 7], [4]);
 
-g.AddEdges(0, [1, 2]);
-g.AddEdges(1, [0, 3, 4]);
-g.AddEdges(2, [0, 3, 5]);
-g.AddEdges(3, [1, 2, 4]);
-g.AddEdges(4, [1, 5]);
-g.AddEdges(5, [2, 3, 4, 7]);
-g.AddEdges(6, [7, 8]);
-g.AddEdges(7, [5, 6, 8]);
-g.AddEdges(8, [6, 7]);
-
-g.DFS()
+g.BFS()
