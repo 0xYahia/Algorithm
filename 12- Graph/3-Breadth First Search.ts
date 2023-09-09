@@ -46,4 +46,85 @@ while (q.length > 0) {
 
 
 
+//! Implementation of Breadth First Search (BFS) algorithm using OOP
 
+// class Vertex {
+//   public name!:string;
+//   public visited!:boolean
+//   public vertexLinks!:Edge[]
+// }
+
+// class Edge {
+//   public weight:number;
+//   public source:Vertex;
+//   public target:Vertex;
+//   constructor(source:Vertex, target:Vertex, weight:number = 0){
+//     this.source= source;
+//     this.target = target;
+//     this.weight = weight;
+//   }
+// }
+
+// class Graph {
+//   private last_index:number = 0;
+//   public vertices: Vertex[]=[];
+//   constructor(names:string[]){
+//     this.vertices = new Vertex();
+//     for(let name in names){
+//       this.vertices[this.last_index] = new Vertex()
+//       this.vertices[this.last_index].name = name;
+//       this.last_index++;
+//     }
+//   }
+
+//   public AddEdges(vertecIndex:number, targets:number[]){
+//     this.vertices[vertecIndex].vertexLinks = new Edge();
+//     for(let i=0; i < targets.length; i++){
+//       this.vertices[vertecIndex].vertexLinks[i] =
+//        new Edge(this.vertices[vertecIndex], this.vertices[targets[i]])
+//     }
+//   }
+
+//   public BFS(){
+//     console.log("BFS From Graph Class")
+//     let v: number = this.vertices.length
+
+//     const graph = new Map();
+
+//     graph.set("A", ['B', 'C']);
+//     graph.set("B", ['E', 'D', 'A']);
+//     graph.set("C", ['D', 'F', 'A']);
+//     graph.set("D", ['E', 'F', 'B']);
+//     graph.set("E", ['F', 'B']);
+//     graph.set("F", ['D', 'E', 'C', 'H']);
+//     graph.set("G", ['H', 'I']);
+//     graph.set("H", ['G', 'I', 'F']);
+//     graph.set("I", ['G', 'H']);
+
+//     let q: Array<Vertex> = new Array()
+//     q.unshift(this.vertices[0]);
+//     this.vertices[0].visited = true;
+
+//     let current_vertex: Vertex | undefined;
+//     let destination: Edge[];
+
+//     while (q.length > 0) {
+//       current_vertex = q.pop()
+//       destination = graph.get(current_vertex)
+//       for (let i = 0; i < destination.length; i++) {
+//         if (!destination[i].target.visited) {
+//           q.unshift(destination[i].target);
+//           destination[i].target.visited = true
+//           console.log(current_vertex + " - " + destination[i].target.name)
+//         }
+//       }
+//     }
+//     this.reset()
+//   }
+
+//   public reset():void{
+//     for(let i =0; i < this.vertices.length; i++){
+//       this.vertices[i].visited = false
+//     }
+//   }
+// }
