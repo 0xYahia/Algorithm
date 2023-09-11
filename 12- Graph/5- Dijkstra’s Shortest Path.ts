@@ -21,6 +21,9 @@
 class Vertex {
   public name!: string;
   public visited!: boolean
+
+  public totalLength!: number;
+  public sourceOfTotalLength: Vertex | null;
   public vertexLinks!: Edge[]
 }
 
@@ -47,8 +50,7 @@ class Graph {
     }
   }
 
-  // public AddEdges(vertexIndex:number, targets:number[]):void
-  public AddEdges(vertexIndex: number, targets: number[], weight: number[]): void {
+  public AddEdges(vertexIndex: number, targets: number[], weight?: number[]): void {
     this.vertices[vertexIndex].vertexLinks = new Array(targets.length)
     for (let i = 0; i < targets.length; i++) {
       this.vertices[vertexIndex].vertexLinks[i] =
@@ -96,6 +98,8 @@ class Graph {
   public reset(): void {
     for (let i = 0; i < this.vertices.length; i++) {
       this.vertices[i].visited = false
+      this.vertices[i].totalLength = 0
+      this.vertices[i].sourceOfTotalLength = null;
     }
   }
 
@@ -114,6 +118,43 @@ class Graph {
       }
     }
   }
+
+  public Dijkstra(): void {
+    console.log('Dijkstra From Graph Class');
+    // for (let i = 0; i < this.vertices.length; i++) {
+    for (let i = 1; i < this.vertices.length; i++) {
+      this.vertices[i].totalLength = Infinity;
+    }
+
+    let current_vertex: Vertex;
+    for (let i = 0; i < this.vertices.length; i++) {
+      current_vertex = this.vertices[i];
+      let destinations: Edge[] = current_vertex.vertexLinks;
+      if (destinations === null) continue;
+      let current_edge: Edge;
+
+      for (let j = 0; j < destinations.length; j++) {
+        current_edge = destinations[j];
+        let new_length: number = current_vertex.totalLength + current_edge.weight;
+        if (new_length < current_edge.target.totalLength) {
+          current_edge.target.totalLength = new_length;
+          current_edge.target.sourceOfTotalLength = current_vertex;
+        }
+      }
+    }
+
+    let path: string = this.vertices[this.vertices.length - 1].name;;
+    let v: Vertex = this.vertices[this.vertices.length - 1];
+
+    while (v.sourceOfTotalLength !== null) {
+      path = v.sourceOfTotalLength.name + " - " + path;
+      v = v.sourceOfTotalLength;
+    }
+    console.log(this.vertices[this.vertices.length - 1].totalLength);
+    console.log(path);
+    this.reset();
+  }
+
 }
 
 let g: Graph = new Graph(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']);
@@ -129,3 +170,5 @@ g.AddEdges(7, [5, 6, 8], [3]);
 g.AddEdges(8, [6, 7], [4]);
 
 g.BFS()
+
+g.Dijkstra()
