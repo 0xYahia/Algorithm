@@ -3,7 +3,7 @@
 // Zip, JPEG, PNG,MP3..etc files are an example of using huffman coding.
 
 // Character representation in computer:
-// char              decimal           decimal to 8 bit Binary
+// char             decimal           decimal to 8 bit Binary
 // a                97                01100001
 // A                65                01000001
 
